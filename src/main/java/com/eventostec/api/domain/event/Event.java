@@ -1,5 +1,6 @@
 package com.eventostec.api.domain.event;
 
+import com.eventostec.api.domain.address.Address;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -18,16 +19,21 @@ import java.util.UUID;
 public class Event {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
+    @GeneratedValue
     private UUID id;
 
     private String title;
 
     private String description;
 
-    private String eventURL;
+    private String imgUrl;
+
+    private String eventUrl;
 
     private Boolean remote;
 
     private Date date;
+
+    @OneToOne(mappedBy = "event", cascade = CascadeType.ALL)
+    private Address address;
 }
