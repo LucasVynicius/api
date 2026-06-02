@@ -7,6 +7,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.Date;
 import java.util.UUID;
 
 @Table(name = "coupon")
@@ -18,14 +19,16 @@ import java.util.UUID;
 public class Coupon {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
+    @GeneratedValue
     private UUID id;
 
     private String code;
 
-    private String discount;
+    private Integer discount;
 
-    @ManyToMany
+    private Date valid;
+
+    @ManyToOne
     @JoinColumn(name = "event_id")
     private Event event;
 }
